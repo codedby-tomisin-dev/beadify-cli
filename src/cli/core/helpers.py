@@ -1,6 +1,7 @@
 import json
 import os
 import random
+import sys
 
 import paramiko
 
@@ -62,9 +63,17 @@ def execute_remote_command(ssh_client, command: str):
         log_message('INFO', "".join(stderr_lines).strip())
 
 
-def get_path_to_script(script_name: str):
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    return os.path.join(script_dir, f'../scripts/{script_name}')
+def get_path_to_script(script_name: str) -> str:
+    """Get the absolute path to a script, compatible with CX_Freeze."""
+    if getattr(sys, 'frozen', False):
+        # If the application is frozen, use the directory of the executable
+        script_dir = os.path.dirname(sys.executable)
+    else:
+        # If running normally, use the directory of the current script
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+
+    # Construct the path to the script
+    return os.path.join(script_dir, 'scripts', script_name)
 
 
 def read_env_file(env_file: str) -> str:
