@@ -1,13 +1,10 @@
 # Beads CLI
-Beads CLI is a fast and efficient tool designed for deploying lightweight applications to a single VPS (Virtual Private Server) machine. This documentation provides instructions on how to build, run, and deploy using the Beads CLI.
+Beads CLI is a fast and efficient tool designed for deploying lightweight applications to a single Ubuntu VPS (Virtual Private Server) machine running Nginx. This documentation provides instructions on how to build, run, and deploy using the Beads CLI.
 
-## Build
-To build the Beads CLI, run the following command in your terminal:
-```bash
-python setup.py build
-```
-This will create a bundled version of the CLI tool that can be used as a standalone executable.
-
+## Setup
+1. Install Python 3.9
+2. Clone the repo
+3. Navigate to the project's directory and create a virtualenv using: `python -m venv .venv && source .venv/bin/activate`
 
 ## Run
 ### Source Mode
@@ -24,6 +21,14 @@ Once the CLI is built and bundled, follow these steps to deploy an application:
 2. Run `bead set-host`
 3. Get a domain and a docker image you wish to deploy
 4. Run `bead deploy` with the domain and image as parameters
+
+
+## Build
+To build the Beads CLI, run the following command in your terminal:
+```bash
+python setup.py build
+```
+This will create a bundled version of the CLI tool that can be used as a standalone executable.
 
 ## Troubleshooting
 The Beads CLI simplifies the process of deploying applications by automating configuration and deployment steps. Make sure to follow the instructions carefully to set up your environment correctly.
