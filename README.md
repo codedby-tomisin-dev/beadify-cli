@@ -1,33 +1,31 @@
-# Run
-Run the command `python -m src.cli {COMMAND} ...` to use the CLI during development.
+# Beads CLI
+Beads CLI is a fast and efficient tool designed for deploying lightweight applications to a single VPS (Virtual Private Server) machine. This documentation provides instructions on how to build, run, and deploy using the Beads CLI.
 
-# Usage
-## Existing Flow (Django Apps)
-
-### DNS
-1. Head to the [hosting provider](https://dcc.godaddy.com/control/portfolio/codelexis.com/settings?itc=mya_vh_buildwebsite_domain) and add an "A record", with a unique subdomain
-
-### Project
-1. Add the fully qualified domain name to `ALLOWED_HOSTS` and `CSRF_TRUSTED_ORIGINS` in the project's settings.py
-
-### CI Pipeline
-1. Point the GitHub workflow files to the new container registry
-1. In GitHub, update the `ACR_USERNAME` and `ACR_PASSWORD` secrets to match the ones of the new container registry
-
-### Server
-1. Run the script to create a Bead on the server
-1. Put an SSL certificate on the domain
-
-### CI Pipeline
-1. In the build workflow file, modify the `deploy` job to update the image tag in the target Docker Compose file and restart the machine
-1. Also, add the secrets the CI pipeline needs to access the VPS
+## Build
+To build the Beads CLI, run the following command in your terminal:
+```bash
+python setup.py build
+```
+This will create a bundled version of the CLI tool that can be used as a standalone executable.
 
 
-## New Flow (Any app)
+## Run
+### Source Mode
+If you’re developing or testing the CLI, you can run it directly from the source using:
+```bash
+python -m src.cli {COMMAND} ...
+```
+This is ideal during development when the CLI is not yet packaged.
+
+### Packaged Mode
+Once the CLI is built and bundled, follow these steps to deploy an application:
+
 1. Run `bead init`
 2. Run `bead set-host`
-3. Grab a build for the bead
-    - Point the GitHub workflow files to the new container registry
-    - In the repository on GitHub, update the `ACR_USERNAME` and `ACR_PASSWORD` secrets to match the ones of the new container registry
-    - Trigger a pipeline run and grab the image and tag
-4. Run `bead deploy` with the image as a parameter
+3. Get a domain and a docker image you wish to deploy
+4. Run `bead deploy` with the domain and image as parameters
+
+## Troubleshooting
+The Beads CLI simplifies the process of deploying applications by automating configuration and deployment steps. Make sure to follow the instructions carefully to set up your environment correctly.
+
+Note: Ensure that your VPS and container registry credentials are correctly set up before running the bead deploy command to avoid any authentication issues.
