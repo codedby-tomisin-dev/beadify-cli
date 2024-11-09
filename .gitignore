@@ -1,0 +1,6 @@
+*.pyc
+*__pycache__
+*build/
+*.venv
+*DS_store
+*.bead.json
