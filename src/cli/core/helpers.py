@@ -70,7 +70,7 @@ def get_path_to_script(script_name: str) -> str:
         script_dir = os.path.dirname(sys.executable)
     else:
         # If running normally, use the directory of the current script
-        script_dir = os.path.dirname(os.path.abspath(__file__))
+        script_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 
     # Construct the path to the script
     return os.path.join(script_dir, 'scripts', script_name)

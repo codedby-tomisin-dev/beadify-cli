@@ -1,7 +1,7 @@
 from cx_Freeze import setup, Executable
 
 build_exe_options = {
-    "include_files": [("src/cli/core/scripts", "scripts")]
+    "include_files": [("src/cli/scripts", "scripts")]
 }
 
 # Define your setup
