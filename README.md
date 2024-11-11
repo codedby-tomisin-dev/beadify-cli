@@ -13,8 +13,8 @@ Beads CLI is a lightweight, efficient tool tailored for hobbyists looking to dep
      - [Initialize a Project](#initialize-a-project)
      - [Specify the Target Machine](#specify-the-target-machine)
      - [Deploy a Bead](#deploy-a-bead)
-     - [Apply SSL](#apply-ssl)
      - [Run a Bead](#run-a-bead)
+     - [Apply SSL](#apply-ssl)
 3. [Examples](#examples)
    - [Initializing a Project](#1-initializing-a-project)
    - [Setting Up the Target Host](#2-setting-up-the-target-host)
@@ -89,14 +89,7 @@ beads provision [--domain-name <domain_name>] [--env-file <path_to_env_file>] [-
 - `--env-file`: (Optional) Path to the environment variables file. Required only once per project.
 - `--image`: (Optional) Docker image to deploy. Only required the first time. Required only once per project.
 
-#### Apply SSL
-Automatically applies an SSL certificate to your deployed application.
-
-```
-beads apply-ssl
-```
-
-- This command uses Let's Encrypt to secure your application with HTTPS.
+> You would need a domain name and a Docker image to provision a bead
 
 #### Run a Bead
 Runs the deployed bead on the target VPS.
@@ -106,6 +99,15 @@ beads run
 ```
 
 - Starts the service on the configured VPS.
+
+#### Apply SSL
+Automatically applies an SSL certificate to your deployed application.
+
+```
+beads apply-ssl
+```
+
+- This command uses Let's Encrypt to secure your application with HTTPS.
 
 
 ### Examples
@@ -117,7 +119,7 @@ beads init --service-name my_app
 
 #### 2. Setting Up the Target Host
 ```
-beads set-host --ip 192.168.1.100 --ssh-key-file ~/.ssh/id_rsa --username ubuntu
+beads set-host --ip 203.0.113.10 --ssh-key-file ~/.ssh/my-vps-ssh-file --username ubuntu
 ```
 
 #### 3. Deploying an Application
@@ -158,7 +160,7 @@ python -m src.cli {COMMAND} ...
 This is ideal during development when the CLI is not yet packaged.
 
 ### Packaged Mode
-Once the CLI is built and bundled, follow these steps to deploy an application:
+Once the CLI is built and bundled, navigate to the directory of a project and:
 ```bash
 /path/to/build/beads {COMMAND}
 ```
