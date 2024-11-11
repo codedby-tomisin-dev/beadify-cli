@@ -32,8 +32,8 @@ def provision(domain_name: str, env_file: str, image: str):
     core.put_bead_on_server(domain_name, env_file, image)
 
 
-@cli.command(help="Apply SSL")
-def setup_https():
+@cli.command(help="Serves your app behind HTTPS")
+def apply_ssl():
     core.obtain_ssl_certificate()
 
 

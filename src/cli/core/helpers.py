@@ -30,8 +30,8 @@ def establish_ssh_connection(host_ip: str, username: str, ssh_key_file: str):
 
 
 def execute_remote_command(ssh_client, command: str):
-    """Execute a command on the remote server via SSH."""
     """Execute a command on the remote server and stream the output in real-time."""
+
     log_message('INITIATE', f"Executing command on the server: `{command}`")
     
     # Execute the command

@@ -93,6 +93,9 @@ def put_bead_on_server(
 def obtain_ssl_certificate(manifest: Manifest, ssh_client):
     log_message('INITIATE', 'Obtaining SSL certificate')
 
+    if not manifest.domain_name:
+        raise ValueError("`domain_name` not found in manifest. Did you mean to run `provision` first?")
+
     execute_remote_command(ssh_client, f"sudo certbot --nginx -d {manifest.domain_name}")
 
     log_message('SUCCESS', 'SSL certificate obtained')
