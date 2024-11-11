@@ -2,6 +2,34 @@
 Beads CLI is a lightweight, efficient tool tailored for hobbyists looking to deploy multiple applications on a single Ubuntu-based VPS (Virtual Private Server). This documentation guides you through deploying and managing multiple apps on a single VPS using Beads CLI.
 
 
+---
+## Table of Contents
+1. [Pre-requisites](#pre-requisites)
+   - [VPS](#vps)
+   - [Local Machine](#local-machine)
+2. [Usage](#usage)
+   - [Commands Overview](#commands-overview)
+   - [Workflow](#workflow)
+     - [Initialize a Project](#initialize-a-project)
+     - [Specify the Target Machine](#specify-the-target-machine)
+     - [Deploy a Bead](#deploy-a-bead)
+     - [Apply SSL](#apply-ssl)
+     - [Run a Bead](#run-a-bead)
+3. [Examples](#examples)
+   - [Initializing a Project](#1-initializing-a-project)
+   - [Setting Up the Target Host](#2-setting-up-the-target-host)
+   - [Deploying an Application](#3-deploying-an-application)
+   - [Running the Application](#4-running-the-application)
+   - [Setting Up HTTPS](#5-setting-up-https)
+4. [Setup](#setup)
+5. [Build](#build)
+6. [Run](#run)
+   - [Source Mode](#source-mode)
+   - [Packaged Mode](#packaged-mode)
+7. [Troubleshooting](#troubleshooting)
+---
+
+
 ## Pre-requisites
 ### VPS
 Currently, the following packages need to be pre-installed on the VPS:
@@ -10,6 +38,9 @@ Currently, the following packages need to be pre-installed on the VPS:
 3. Nginx
 
 > Support for automatically installing the required packages will be provided in the coming months.
+
+### Local Machine
+1. Python >= 3.9
 
 
 ## Usage
@@ -23,8 +54,8 @@ The Beads CLI provides the following commands:
 | `init`        | Initialize a project for deployment setup             |
 | `set-host`    | Specify the target VPS for deploying the project      |
 | `provision`   | Deploy a bead (application) to the VPS                |
-| `apply-ssl`   | Apply SSL to the deployed application                 |
 | `run`         | Run a deployed bead                                   |
+| `apply-ssl`   | Apply SSL to the deployed application                 |
 
 ### Workflow
 #### Initialize a Project
@@ -94,16 +125,15 @@ beads set-host --ip 192.168.1.100 --ssh-key-file ~/.ssh/id_rsa --username ubuntu
 beads provision --domain-name example.com --env-file .env --image my_docker_image
 ```
 
-#### 4. Setting Up HTTPS
-```
-beads apply-ssl
-```
-
-#### 5. Running the Application
+#### 4. Running the Application
 ```
 beads run
 ```
 
+#### 5. Setting Up HTTPS
+```
+beads apply-ssl
+```
 
 ## Setup
 1. Install Python 3.9
