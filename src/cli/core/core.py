@@ -65,7 +65,7 @@ def put_bead_on_server(
             # Construct the command to run on the remote server
             command = (
                 f"sudo python3 {bead_script_remote_path} "
-                f"--service-name {manifest.name} "
+                f"--name {manifest.name} "
                 f"--domain-name {domain_name} "
                 f"--container-port {container_port} "
                 f"--image {image} "
