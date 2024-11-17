@@ -13,7 +13,8 @@ Beadify CLI is a lightweight, efficient tool tailored for hobbyists looking to d
 1. [Pre-requisites](#pre-requisites)
    - [VPS](#vps)
    - [Local Machine](#local-machine)
-2. [Usage](#usage)
+2. [Installation](#installation)
+3. [Usage](#usage)
    - [Commands Overview](#commands-overview)
    - [Workflow](#workflow)
      - [Initialize a Project](#initialize-a-project)
@@ -21,18 +22,18 @@ Beadify CLI is a lightweight, efficient tool tailored for hobbyists looking to d
      - [Deploy a Bead](#deploy-a-bead)
      - [Run a Bead](#run-a-bead)
      - [Apply SSL](#apply-ssl)
-3. [Examples](#examples)
+4. [Examples](#examples)
    - [Initializing a Project](#1-initializing-a-project)
    - [Setting Up the Target Host](#2-setting-up-the-target-host)
    - [Deploying an Application](#3-deploying-an-application)
    - [Running the Application](#4-running-the-application)
    - [Setting Up HTTPS](#5-setting-up-https)
-4. [Setup](#setup)
-5. [Build](#build)
-6. [Run](#run)
+5. [Setup](#setup)
+6. [Build](#build)
+7. [Run](#run)
    - [Source Mode](#source-mode)
    - [Packaged Mode](#packaged-mode)
-7. [Troubleshooting](#troubleshooting)
+8. [Troubleshooting](#troubleshooting)
 ---
 
 
@@ -47,6 +48,11 @@ Currently, the following packages need to be pre-installed on the VPS:
 
 ### Local Machine
 1. Python >= 3.9
+
+## Installation
+```bash
+pip install beadify
+```
 
 
 ## Usage
@@ -68,10 +74,10 @@ The Beadify CLI provides the following commands:
 This command creates a manifest file in your project's directory, and sets up a new project for deployment.
 
 ```
-beadify init --service-name <service_name>
+beadify init --name <service_name>
 ```
 
-- `--service-name`: (Required) The name of the service you are deploying.
+- `--name`: (Required) The name of the service you are deploying.
 
 #### Specify the Target Machine
 Configures the target VPS for deployment.
