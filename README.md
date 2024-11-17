@@ -5,7 +5,7 @@
 <!-- ![PyPI - Downloads](https://img.shields.io/pypi/dm/beadify) -->
 ![License](https://img.shields.io/pypi/l/beadify)
 
-Beadify CLI is a lightweight, efficient tool tailored for hobbyists looking to deploy multiple applications on a single Ubuntu-based VPS (Virtual Private Server). This documentation guides you through deploying and managing multiple apps on a single VPS using Beadify CLI.
+A deployment tool crafted for cost-saavy hobbyists, enabling the seamless deployment and serving of multiple lightweight applications from a single Ubuntu VPS (Virtual Private Server) powered by Nginx. This documentation guides you through transforming your VPS into a functional Platform-as-a-Service (PaaS) with minimal effort.
 
 
 ---
