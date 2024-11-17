@@ -1,9 +1,13 @@
+import os
 from setuptools import setup, find_packages
+
+
+version = os.getenv("PACKAGE_VERSION", "0.1.0")
 
 
 setup(
     name="beadify",
-    version="1.0",
+    version=version,
     description="A lightweight, efficient tool tailored for hobbyists looking to deploy multiple applications on a single Ubuntu-based VPS (Virtual Private Server)",
     author="Tomisin Abiodun",
     author_email="decave.12357@gmail.com",
@@ -11,7 +15,9 @@ setup(
     package_dir={"": "src"},
     install_requires=[
         'click',
-        'paramiko'
+        'colorama',
+        'paramiko',
+        'pydantic',
     ],
     entry_points={
         "console_scripts": [
