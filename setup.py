@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 
 setup(
-    name="bead",
+    name="beads",
     version="1.0",
     description="A lightweight, efficient tool tailored for hobbyists looking to deploy multiple applications on a single Ubuntu-based VPS (Virtual Private Server)",
     author="Tomisin Abiodun",
@@ -15,7 +15,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "bead=cli.__main__:cli"
+            "beads=cli.__main__:cli"
         ]
     },
     package_data={
