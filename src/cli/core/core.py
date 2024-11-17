@@ -113,7 +113,7 @@ def run(manifest: Manifest):
 
     log_message('INFO', '----------------------------------------------\n')
 
-    execute_remote_command(ssh_client, "docker-compose -f /beads/{manifest.name}.yml up -d && sudo systemctl reload nginx")
+    execute_remote_command(ssh_client, f"docker-compose -f /beads/{manifest.name}.yml up -d && sudo systemctl reload nginx")
 
     log_message('SUCCESS', f'🟢 Bead is now running: http://{manifest.domain_name}')
 
