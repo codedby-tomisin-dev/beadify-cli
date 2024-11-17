@@ -87,7 +87,7 @@ def put_bead_on_server(
     manifest.image = image
     manifest.save()
 
-    log_message('SUCCESS', f"\n✅ Successfully added bead '{manifest.name}'. Run 'bead run' to launch the service")
+    log_message('SUCCESS', f"\n✅ Successfully added bead '{manifest.name}'. Run 'beadify run' to launch the service")
 
 
 @requires_manifest_file
@@ -100,7 +100,7 @@ def obtain_ssl_certificate(manifest: Manifest, ssh_client):
 
     execute_remote_command(ssh_client, f"sudo certbot --nginx -d {manifest.domain_name}")
 
-    log_message('SUCCESS', 'SSL certificate obtained')
+    log_message('SUCCESS', f'🔐 HTTPS enabled for your service: https://{manifest.domain_name}')
 
 
 @requires_manifest_file

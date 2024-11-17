@@ -126,7 +126,7 @@ beadify apply-ssl
 
 #### 1. Initializing a Project
 ```
-beadify init --service-name my_app
+beadify init --name my_app
 ```
 
 #### 2. Setting Up the Target Host
@@ -136,7 +136,7 @@ beadify set-host --ip 203.0.113.10 --ssh-key-file ~/.ssh/my-vps-ssh-file --usern
 
 #### 3. Deploying an Application
 ```
-beadify provision --domain-name example.com --env-file .env --image my_docker_image
+beadify provision --domain-name blog.example.com --env-file .env --image my_docker_image
 ```
 
 #### 4. Running the Application
