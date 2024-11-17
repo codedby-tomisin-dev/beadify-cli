@@ -1,14 +1,30 @@
-from cx_Freeze import setup, Executable
+from setuptools import setup, find_packages
 
-build_exe_options = {
-    "include_files": [("src/cli/scripts", "scripts")]
-}
 
-# Define your setup
 setup(
-    name="mycli",
+    name="bead",
     version="1.0",
-    description="My CLI tool",
-    options={"build_exe": build_exe_options},
-    executables=[Executable("src/cli/__main__.py", target_name="beads")],
+    description="A lightweight, efficient tool tailored for hobbyists looking to deploy multiple applications on a single Ubuntu-based VPS (Virtual Private Server)",
+    author="Tomisin Abiodun",
+    author_email="decave.12357@gmail.com",
+    packages=find_packages(where="src"),
+    package_dir={"": "src"},
+    install_requires=[
+        'click',
+        'paramiko'
+    ],
+    entry_points={
+        "console_scripts": [
+            "bead=cli.__main__:cli"
+        ]
+    },
+    package_data={
+        "cli": ["scripts/*"]
+    },
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+    ],
+    python_requires='>=3.8',
 )

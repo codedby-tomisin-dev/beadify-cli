@@ -14,8 +14,8 @@ from .log_message import log_message
 from .models import Manifest
 
 
-def initialise_project(service_name: str):
-    manifest = Manifest(service_name=service_name)
+def initialise_project(name: str):
+    manifest = Manifest(name=name)
     manifest.save()
 
     log_message('SUCCESS', 'Bead initiated successfully!')
@@ -25,6 +25,8 @@ def initialise_project(service_name: str):
 def set_host(manifest: Manifest, username: str, ip: str, ssh_key_file: str):
     manifest.host = Manifest.Host(**{'username': username, 'ip': ip, 'ssh_key_file': ssh_key_file})
     manifest.save()
+
+    log_message('SUCCESS', 'Host set successfully!')
 
 
 @requires_manifest_file
@@ -58,12 +60,12 @@ def put_bead_on_server(
             log_message()
 
             # Read environment file content
-            env_file_content = read_env_file(env_file)
+            env_file_content = read_env_file(env_file, encode=True)
 
             # Construct the command to run on the remote server
             command = (
                 f"sudo python3 {bead_script_remote_path} "
-                f"--service-name {manifest.service_name} "
+                f"--service-name {manifest.name} "
                 f"--domain-name {domain_name} "
                 f"--container-port {container_port} "
                 f"--image {image} "
@@ -85,7 +87,7 @@ def put_bead_on_server(
     manifest.image = image
     manifest.save()
 
-    log_message('SUCCESS', f"\n✅ Successfully added bead '{manifest.service_name}'. Run 'bead run' to launch the service")
+    log_message('SUCCESS', f"\n✅ Successfully added bead '{manifest.name}'. Run 'bead run' to launch the service")
 
 
 @requires_manifest_file
@@ -111,7 +113,7 @@ def run(manifest: Manifest):
 
     log_message('INFO', '----------------------------------------------\n')
 
-    execute_remote_command(ssh_client, "docker-compose -f /beads/{manifest.service_name}.yml up -d")
+    execute_remote_command(ssh_client, "docker-compose -f /beads/{manifest.name}.yml up -d")
     execute_remote_command(ssh_client, "sudo systemctl reload nginx")
 
     log_message('SUCCESS', f'🟢 Bead is now running: http://{manifest.domain_name}')

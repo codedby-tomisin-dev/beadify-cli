@@ -5,3 +5,6 @@
 *DS_store
 *.bead.json
 notes.md
+*.egg-info
+*.coverage
+*dist/

@@ -1,3 +1,4 @@
+from base64 import b64encode
 import json
 import os
 import random
@@ -76,11 +77,16 @@ def get_path_to_script(script_name: str) -> str:
     return os.path.join(script_dir, 'scripts', script_name)
 
 
-def read_env_file(env_file: str) -> str:
+def read_env_file(env_file: str, encode: bool = False) -> str:
     """Read the contents of the environment file."""
     if env_file and os.path.isfile(env_file):
         with open(env_file, 'r') as file:
-            return file.read()
+            contents = file.read()
+
+            if encode:
+                contents = b64encode(contents.encode()).decode()
+
+            return contents
     return ''
 
 

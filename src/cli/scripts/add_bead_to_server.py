@@ -1,4 +1,5 @@
 import argparse
+from base64 import b64decode
 import os
 import subprocess
 from typing import Literal
@@ -109,6 +110,8 @@ def create_nginx_symlink(service_name: str):
 def run(service_name: str, domain_name: str, env_file_content: str, container_port: str, image: str):
     """Orchestrate the creation of the Docker and Nginx configurations."""
 
+    env_file_content = b64decode(env_file_content).decode()
+
     validate_service_name(service_name)
     write_env_file(f'/etc/{service_name}', env_file_content)
     create_directory(DOCKER_COMPOSE_MANIFEST_DIRECTORY)
@@ -119,14 +122,14 @@ def run(service_name: str, domain_name: str, env_file_content: str, container_po
 
 def main():
     parser = argparse.ArgumentParser(description="A script that handles arguments.")
-    parser.add_argument('--service-name', type=str, help="Service name", required=True)
-    parser.add_argument('--domain-name', type=str, help="Domain name", required=True)
+    parser.add_argument('--name', type=str, help="Name of the service", required=True)
+    parser.add_argument('--domain-name', type=str, help="Fully qualified domain name (ex: example.com, blog.example.com)", required=True)
     parser.add_argument('--env-file-content', type=str, help="Env file content", required=False)
     parser.add_argument('--container-port', type=str, help="Container port", required=True)
     parser.add_argument('--image', type=str, help="Docker image", required=True)
     
     args = parser.parse_args()
-    run(args.service_name, args.domain_name, args.env_file_content, args.container_port, args.image)
+    run(args.name, args.domain_name, args.env_file_content, args.container_port, args.image)
 
 
 if __name__ == '__main__':

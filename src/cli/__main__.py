@@ -1,7 +1,7 @@
 import click
 from colorama import init as init_colorama
 
-from src.cli import core
+from . import core
 
 
 @click.group()
@@ -11,9 +11,9 @@ def cli():
 
 
 @cli.command(help="Initialize a project for deployment setup")
-@click.option('--service-name', required=True)
-def init(service_name):
-    core.initialise_project(service_name)
+@click.option('--name', required=True)
+def init(name):
+    core.initialise_project(name)
 
 
 @cli.command(help="Specify the target machine for deploying the project")
@@ -44,4 +44,6 @@ def run():
 
 init_colorama(autoreset=True)
 
-cli()
+
+if __name__ == '__main__':
+    cli()
