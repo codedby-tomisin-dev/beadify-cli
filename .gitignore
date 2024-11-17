@@ -8,3 +8,5 @@ notes.md
 *.egg-info
 *.coverage
 *dist/
+htmlcov/
+.pytest*
