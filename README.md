@@ -1,5 +1,5 @@
-# Beads CLI
-Beads CLI is a lightweight, efficient tool tailored for hobbyists looking to deploy multiple applications on a single Ubuntu-based VPS (Virtual Private Server). This documentation guides you through deploying and managing multiple apps on a single VPS using Beads CLI.
+# Beadify CLI
+Beadify CLI is a lightweight, efficient tool tailored for hobbyists looking to deploy multiple applications on a single Ubuntu-based VPS (Virtual Private Server). This documentation guides you through deploying and managing multiple apps on a single VPS using Beadify CLI.
 
 
 ---
@@ -47,7 +47,7 @@ Currently, the following packages need to be pre-installed on the VPS:
 
 ### Commands Overview
 
-The Beads CLI provides the following commands:
+The Beadify CLI provides the following commands:
 
 | Command     | Description                                           |
 |-------------|-------------------------------------------------------|
@@ -62,7 +62,7 @@ The Beads CLI provides the following commands:
 This command creates a manifest file in your project's directory, and sets up a new project for deployment.
 
 ```
-beads init --service-name <service_name>
+beadify init --service-name <service_name>
 ```
 
 - `--service-name`: (Required) The name of the service you are deploying.
@@ -71,7 +71,7 @@ beads init --service-name <service_name>
 Configures the target VPS for deployment.
 
 ```
-beads set-host --ip <ip_address> --ssh-key-file <path_to_ssh_key> --username <username>
+beadify set-host --ip <ip_address> --ssh-key-file <path_to_ssh_key> --username <username>
 ```
 
 - `--ip`: (Required) IP address of the target VPS.  
@@ -82,7 +82,7 @@ beads set-host --ip <ip_address> --ssh-key-file <path_to_ssh_key> --username <us
 Deploys the specified bead (application) to the configured VPS.
 
 ```
-beads provision [--domain-name <domain_name>] [--env-file <path_to_env_file>] [--image <docker_image>]
+beadify provision [--domain-name <domain_name>] [--env-file <path_to_env_file>] [--image <docker_image>]
 ```
 
 - `--domain-name`: (Optional) Domain name for the deployment. Required only once per project.
@@ -95,7 +95,7 @@ beads provision [--domain-name <domain_name>] [--env-file <path_to_env_file>] [-
 Runs the deployed bead on the target VPS.
 
 ```
-beads run
+beadify run
 ```
 
 - Starts the service on the configured VPS.
@@ -104,7 +104,7 @@ beads run
 Automatically applies an SSL certificate to your deployed application.
 
 ```
-beads apply-ssl
+beadify apply-ssl
 ```
 
 - This command uses Let's Encrypt to secure your application with HTTPS.
@@ -114,27 +114,27 @@ beads apply-ssl
 
 #### 1. Initializing a Project
 ```
-beads init --service-name my_app
+beadify init --service-name my_app
 ```
 
 #### 2. Setting Up the Target Host
 ```
-beads set-host --ip 203.0.113.10 --ssh-key-file ~/.ssh/my-vps-ssh-file --username ubuntu
+beadify set-host --ip 203.0.113.10 --ssh-key-file ~/.ssh/my-vps-ssh-file --username ubuntu
 ```
 
 #### 3. Deploying an Application
 ```
-beads provision --domain-name example.com --env-file .env --image my_docker_image
+beadify provision --domain-name example.com --env-file .env --image my_docker_image
 ```
 
 #### 4. Running the Application
 ```
-beads run
+beadify run
 ```
 
 #### 5. Setting Up HTTPS
 ```
-beads apply-ssl
+beadify apply-ssl
 ```
 
 ## Setup
@@ -144,7 +144,7 @@ beads apply-ssl
 
 
 ## Build
-To build the Beads CLI, run the following command in your terminal:
+To build the Beadify CLI, run the following command in your terminal:
 ```bash
 python setup.py build
 ```
@@ -162,11 +162,11 @@ This is ideal during development when the CLI is not yet packaged.
 ### Packaged Mode
 Once the CLI is built and bundled, navigate to the directory of a project and:
 ```bash
-/path/to/build/beads {COMMAND}
+/path/to/build/beadify {COMMAND}
 ```
 
 
 ## Troubleshooting
-The Beads CLI simplifies the process of deploying applications by automating configuration and deployment steps. Make sure to follow the instructions carefully to set up your environment correctly.
+The Beadify CLI simplifies the process of deploying applications by automating configuration and deployment steps. Make sure to follow the instructions carefully to set up your environment correctly.
 
 Note: Ensure that your VPS and container registry credentials are correctly set up before running the bead deploy command to avoid any authentication issues.
