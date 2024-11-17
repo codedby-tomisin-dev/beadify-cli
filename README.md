@@ -74,7 +74,7 @@ The Beadify CLI provides the following commands:
 This command creates a manifest file in your project's directory, and sets up a new project for deployment.
 
 ```
-beadify init --name <service_name>
+beadify init --name <name_of_service>
 ```
 
 - `--name`: (Required) The name of the service you are deploying.
