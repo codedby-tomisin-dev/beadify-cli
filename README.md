@@ -2,7 +2,7 @@
 
 [![PyPI version](https://img.shields.io/pypi/v/beadify.svg)](https://pypi.org/project/beadify/)
 ![Python Versions](https://img.shields.io/pypi/pyversions/beadify.svg)
-<!-- ![PyPI - Downloads](https://img.shields.io/pypi/dm/beadify) -->
+![PyPI - Downloads](https://img.shields.io/pypi/dm/beadify)
 ![License](https://img.shields.io/pypi/l/beadify)
 
 A deployment tool crafted for cost-saavy hobbyists, enabling the seamless deployment and serving of multiple lightweight applications from a single Ubuntu VPS (Virtual Private Server) powered by Nginx. This documentation guides you through transforming your VPS into a functional Platform-as-a-Service (PaaS) with minimal effort.
