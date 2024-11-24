@@ -110,10 +110,13 @@ def create_nginx_symlink(service_name: str):
 def run(service_name: str, domain_name: str, env_file_content: str, container_port: str, image: str):
     """Orchestrate the creation of the Docker and Nginx configurations."""
 
-    env_file_content = b64decode(env_file_content).decode()
+    env_file_content = b64decode(env_file_content).decode() if env_file_content else None
 
     validate_service_name(service_name)
-    write_env_file(f'/etc/{service_name}', env_file_content)
+
+    if env_file_content:
+        write_env_file(f'/etc/{service_name}', env_file_content)
+
     create_directory(DOCKER_COMPOSE_MANIFEST_DIRECTORY)
     write_docker_compose_file(service_name, container_port, image)
     write_nginx_config(service_name, domain_name, container_port)
@@ -121,7 +124,7 @@ def run(service_name: str, domain_name: str, env_file_content: str, container_po
 
 
 def main():
-    parser = argparse.ArgumentParser(description="A script that handles arguments.")
+    parser = argparse.ArgumentParser(description="A script that deploys a bead to a server.")
     parser.add_argument('--name', type=str, help="Name of the service", required=True)
     parser.add_argument('--domain-name', type=str, help="Fully qualified domain name (ex: example.com, blog.example.com)", required=True)
     parser.add_argument('--env-file-content', type=str, help="Env file content", required=False)

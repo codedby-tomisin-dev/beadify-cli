@@ -65,7 +65,7 @@ The Beadify CLI provides the following commands:
 |-------------|-------------------------------------------------------|
 | `init`        | Initialize a project for deployment setup             |
 | `set-host`    | Specify the target VPS for deploying the project      |
-| `provision`   | Deploy a bead (application) to the VPS                |
+| `deploy`      | Deploy a bead (application) to the VPS                |
 | `run`         | Run a deployed bead                                   |
 | `apply-ssl`   | Apply SSL to the deployed application                 |
 
@@ -94,14 +94,14 @@ beadify set-host --ip <ip_address> --ssh-key-file <path_to_ssh_key> --username <
 Deploys the specified bead (application) to the configured VPS.
 
 ```
-beadify provision [--domain-name <domain_name>] [--env-file <path_to_env_file>] [--image <docker_image>]
+beadify deploy [--domain-name <domain_name>] [--env-file <path_to_env_file>] [--image <docker_image>]
 ```
 
 - `--domain-name`: (Optional) Domain name for the deployment. Required only once per project.
 - `--env-file`: (Optional) Path to the environment variables file. Required only once per project.
 - `--image`: (Optional) Docker image to deploy. Only required the first time. Required only once per project.
 
-> You would need a domain name and a Docker image to provision a bead
+> You would need a domain name and a Docker image to deploy a bead
 
 #### Run a Bead
 Runs the deployed bead on the target VPS.
@@ -136,7 +136,7 @@ beadify set-host --ip 203.0.113.10 --ssh-key-file ~/.ssh/my-vps-ssh-file --usern
 
 #### 3. Deploying an Application
 ```
-beadify provision --domain-name blog.example.com --env-file .env --image my_docker_image
+beadify deploy --domain-name blog.example.com --env-file .env --image my_docker_image
 ```
 
 #### 4. Running the Application

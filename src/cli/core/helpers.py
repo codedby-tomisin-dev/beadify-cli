@@ -12,7 +12,6 @@ from .log_message import log_message
 
 
 def establish_ssh_connection(host_ip: str, username: str, ssh_key_file: str):
-    """Establish an SSH connection and return the client."""
     log_message('INFO', f"*** Establishing SSH connection to {host_ip} ***")
 
     ssh_client = paramiko.SSHClient()
@@ -30,9 +29,7 @@ def establish_ssh_connection(host_ip: str, username: str, ssh_key_file: str):
     return ssh_client
 
 
-def execute_remote_command(ssh_client, command: str):
-    """Execute a command on the remote server and stream the output in real-time."""
-
+def execute_remote_command(ssh_client: paramiko.SSHClient, command: str):
     log_message('INITIATE', f"Executing command on the server: `{command}`")
     
     # Execute the command
@@ -63,23 +60,23 @@ def execute_remote_command(ssh_client, command: str):
     if stderr_lines:
         log_message('INFO', "".join(stderr_lines).strip())
 
+    # Check the exit status after the command completes
+    exit_status = channel.recv_exit_status()
+    if exit_status:
+        raise RuntimeError
+
 
 def get_path_to_script(script_name: str) -> str:
-    """Get the absolute path to a script, compatible with CX_Freeze."""
     if getattr(sys, 'frozen', False):
-        # If the application is frozen, use the directory of the executable
         script_dir = os.path.dirname(sys.executable)
     else:
-        # If running normally, use the directory of the current script
         script_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 
-    # Construct the path to the script
     return os.path.join(script_dir, 'scripts', script_name)
 
 
 def read_env_file(env_file: str, encode: bool = False) -> str:
-    """Read the contents of the environment file."""
-    if env_file and os.path.isfile(env_file):
+    if os.path.isfile(env_file):
         with open(env_file, 'r') as file:
             contents = file.read()
 

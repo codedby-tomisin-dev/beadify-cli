@@ -9,12 +9,12 @@ from .log_message import log_message
 
 class Manifest(BaseModel):
     class Host(BaseModel):
+        domain_name: str = ''
         ip: str = ''
         ssh_key_file: str = ''
         username: str = ''
 
     container_port: Optional[int] = None
-    domain_name: Optional[str] = None
     env_file: Optional[str] = None
     host: Optional[Host] = Host()
     image: Optional[str] = None

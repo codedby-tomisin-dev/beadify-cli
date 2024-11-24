@@ -20,16 +20,16 @@ def init(name):
 @click.option('--ip', required=True)
 @click.option('--ssh-key-file', required=True, type=click.Path(exists=True))
 @click.option('--username', required=True)
-def set_host(ip: str, ssh_key_file: str, username: str):
-    core.set_host(username, ip, ssh_key_file)
+@click.option('--domain-name', required=True)
+def set_host(ip: str, ssh_key_file: str, username: str, domain_name: str):
+    core.set_host(username, ip, ssh_key_file, domain_name)
 
 
 @cli.command(help="Deploy a bead")
-@click.option('--domain-name', required=False)
 @click.option('--env-file', required=False)
 @click.option('--image', required=False)
-def provision(domain_name: str, env_file: str, image: str):
-    core.put_bead_on_server(domain_name, env_file, image)
+def deploy(env_file: str, image: str):
+    core.deploy_bead(env_file, image)
 
 
 @cli.command(help="Serves your app behind HTTPS")
@@ -42,8 +42,6 @@ def run():
     core.run()
 
 
-init_colorama(autoreset=True)
-
-
 if __name__ == '__main__':
+    init_colorama(autoreset=True)
     cli()
