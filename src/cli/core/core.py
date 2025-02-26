@@ -1,7 +1,6 @@
 from paramiko import SSHClient
 
 from .helpers import (
-    establish_ssh_connection,
     execute_remote_command,
     get_path_to_script,
     read_env_file,
@@ -98,18 +97,21 @@ def obtain_ssl_certificate(manifest: Manifest, ssh_client):
 
 
 @requires_manifest_file
-def run(manifest: Manifest):
-    ssh_client = establish_ssh_connection(
-        manifest.host.ip,
-        manifest.host.username,
-        manifest.host.ssh_key_file
-    )
-
+@uses_ssh_connection
+def run(manifest: Manifest, ssh_client):
     log_message('INFO', '----------------------------------------------\n')
 
     execute_remote_command(ssh_client, f"docker-compose -f /beads/{manifest.name}.yml up -d --pull always --force-recreate && sudo systemctl reload nginx")
 
     log_message('SUCCESS', f'🟢 Bead is now running: http://{manifest.host.domain_name}')
+
+
+@requires_manifest_file
+@uses_ssh_connection
+def logs(manifest: Manifest, ssh_client):
+    log_message('INITIATE', 'Fetching logs...')
+
+    execute_remote_command(ssh_client, f"docker-compose -f /beads/{manifest.name}.yml logs --tail=100 --follow")
 
 
 def provision(username: str, ip: str, ssh_key_file: str):
@@ -118,6 +120,7 @@ def provision(username: str, ip: str, ssh_key_file: str):
     - Install Nginx
     - Install Docker
     - Install Docker Compose
+    - Install certbot
 
     EXECUTIONS
     - Start Nginx

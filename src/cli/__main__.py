@@ -42,6 +42,11 @@ def run():
     core.run()
 
 
+@cli.command(help="Get logs")
+def logs():
+    core.logs()
+
+
 if __name__ == '__main__':
     init_colorama(autoreset=True)
     cli()
