@@ -149,6 +149,11 @@ beadify run
 beadify apply-ssl
 ```
 
+#### 6. View logs
+```
+beadify logs
+```
+
 ## Setup
 1. Install Python 3.9
 2. Clone the repo
