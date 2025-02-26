@@ -22,6 +22,7 @@ A deployment tool crafted for cost-saavy hobbyists, enabling the seamless deploy
      - [Deploy a Bead](#deploy-a-bead)
      - [Run a Bead](#run-a-bead)
      - [Apply SSL](#apply-ssl)
+     - [View logs](#view-logs)
 4. [Examples](#examples)
    - [Initializing a Project](#1-initializing-a-project)
    - [Setting Up the Target Host](#2-setting-up-the-target-host)
@@ -68,6 +69,7 @@ The Beadify CLI provides the following commands:
 | `deploy`      | Deploy a bead (application) to the VPS                |
 | `run`         | Run a deployed bead                                   |
 | `apply-ssl`   | Apply SSL to the deployed application                 |
+| `logs`        | Log a deployed application                            |
 
 ### Workflow
 #### Initialize a Project
